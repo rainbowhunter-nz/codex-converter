@@ -24,12 +24,12 @@ Convert Claude Code project subagents into Codex custom agent TOML files.
 
 ## Checklist
 
-- [ ] Agent Markdown files are parsed.
-- [ ] YAML frontmatter parsing handles normal quoted and multiline values.
-- [ ] Missing required Codex fields are reported clearly.
-- [ ] TOML output is valid.
-- [ ] Body content maps to `developer_instructions`.
-- [ ] Existing output conflicts are handled consistently.
+- [x] Agent Markdown files are parsed.
+- [x] YAML frontmatter parsing handles normal quoted and multiline values.
+- [x] Missing required Codex fields are reported clearly.
+- [x] TOML output is valid.
+- [x] Body content maps to `developer_instructions`.
+- [x] Existing output conflicts are handled consistently.
 
 ## Success Criteria
 

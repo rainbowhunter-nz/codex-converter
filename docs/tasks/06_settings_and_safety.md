@@ -23,12 +23,12 @@ Create `.codex/config.toml` safely and enforce the converter's filesystem safety
 
 ## Checklist
 
-- [ ] `.codex/config.toml` is created by default.
-- [ ] Unsupported Claude settings are reported.
-- [ ] `.claude/settings.local.json` is skipped by default.
-- [ ] Output path containment is enforced.
-- [ ] User-scoped Claude paths are rejected.
-- [ ] Conversion report includes skipped safety-sensitive assets.
+- [x] `.codex/config.toml` is created by default.
+- [x] Unsupported Claude settings are reported.
+- [x] `.claude/settings.local.json` is skipped by default.
+- [x] Output path containment is enforced.
+- [x] User-scoped Claude paths are rejected.
+- [x] Conversion report includes skipped safety-sensitive assets.
 
 ## Success Criteria
 

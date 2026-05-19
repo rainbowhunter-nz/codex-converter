@@ -25,11 +25,11 @@ Implement project-local Claude Code asset discovery and a structured report mode
 
 ## Checklist
 
-- [ ] Discovery walks only under the selected source directory.
-- [ ] Nested `CLAUDE.md` files are found.
-- [ ] Project skills, commands, agents, and settings files are identified.
-- [ ] `.claude/settings.local.json` is reported as skipped by default.
-- [ ] `inspect` prints a readable Rich table.
+- [x] Discovery walks only under the selected source directory.
+- [x] Nested `CLAUDE.md` files are found.
+- [x] Project skills, commands, agents, and settings files are identified.
+- [x] `.claude/settings.local.json` is reported as skipped by default.
+- [x] `inspect` prints a readable Rich table.
 
 ## Success Criteria
 

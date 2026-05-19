@@ -20,12 +20,12 @@ Validate the full converter workflow and document basic usage.
 
 ## Checklist
 
-- [ ] End-to-end fixture covers instructions, skills, commands, agents, and settings.
-- [ ] Dry-run output is verified.
-- [ ] Real conversion output is verified.
-- [ ] README includes basic usage.
-- [ ] README lists unsupported areas.
-- [ ] Full test suite passes with `uv`.
+- [x] End-to-end fixture covers instructions, skills, commands, agents, and settings.
+- [x] Dry-run output is verified.
+- [x] Real conversion output is verified.
+- [x] README includes basic usage.
+- [x] README lists unsupported areas.
+- [x] Full test suite passes with `uv`.
 
 ## Success Criteria
 

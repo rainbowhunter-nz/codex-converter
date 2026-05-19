@@ -20,11 +20,11 @@ Convert Claude Code `CLAUDE.md` files into Codex `AGENTS.md` files.
 
 ## Checklist
 
-- [ ] Root instruction conversion works.
-- [ ] Nested instruction conversion works.
-- [ ] Existing `AGENTS.md` handling follows the accepted proposal decision.
-- [ ] `--dry-run` reports planned writes without writing files.
-- [ ] `--force` overwrites generated targets when requested.
+- [x] Root instruction conversion works.
+- [x] Nested instruction conversion works.
+- [x] Existing `AGENTS.md` handling follows the accepted proposal decision.
+- [x] `--dry-run` reports planned writes without writing files.
+- [x] `--force` overwrites generated targets when requested.
 
 ## Success Criteria
 

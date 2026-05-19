@@ -22,11 +22,11 @@ Set up the Python package structure and CLI entrypoint for the converter.
 
 ## Checklist
 
-- [ ] Dependencies are declared in `pyproject.toml`.
-- [ ] Typer CLI starts without import errors.
-- [ ] `inspect --help` and `convert --help` render successfully.
-- [ ] CLI command names and options match `docs/proposal.md`.
-- [ ] Package can be run with `uv run`.
+- [x] Dependencies are declared in `pyproject.toml`.
+- [x] Typer CLI starts without import errors.
+- [x] `inspect --help` and `convert --help` render successfully.
+- [x] CLI command names and options match `docs/proposal.md`.
+- [x] Package can be run with `uv run`.
 
 ## Success Criteria
 

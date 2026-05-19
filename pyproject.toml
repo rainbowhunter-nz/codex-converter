@@ -14,7 +14,21 @@ dependencies = [
 [project.scripts]
 codex-converter = "codex_converter.cli:main"
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [dependency-groups]
 dev = [
+    "mypy>=1.16.0",
     "pytest>=8.0.0",
+    "ruff>=0.11.0",
+    "types-pyyaml>=6.0.12",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.13"
+strict = true

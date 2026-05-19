@@ -20,12 +20,12 @@ Convert project-scoped Claude Code skills and commands into Codex skills.
 
 ## Checklist
 
-- [ ] Project skills are copied to `.agents/skills`.
-- [ ] Skill supporting files are preserved.
-- [ ] Missing skill `name` frontmatter is added.
-- [ ] Missing skill `description` frontmatter is added with a conservative generated value.
-- [ ] Claude commands become Codex skills.
-- [ ] Existing output conflicts are reported unless `--force` is set.
+- [x] Project skills are copied to `.agents/skills`.
+- [x] Skill supporting files are preserved.
+- [x] Missing skill `name` frontmatter is added.
+- [x] Missing skill `description` frontmatter is added with a conservative generated value.
+- [x] Claude commands become Codex skills.
+- [x] Existing output conflicts are reported unless `--force` is set.
 
 ## Success Criteria
 
