@@ -12,6 +12,7 @@ from codex_converter.safety import contained_path, reject_user_claude_path
 
 
 runner = CliRunner()
+HELP_ENV = {"COLUMNS": "120"}
 
 
 def write(path: Path, content: str) -> None:
@@ -34,7 +35,7 @@ def make_fixture(root: Path) -> None:
 
 
 def test_root_help_exits_successfully() -> None:
-    result = runner.invoke(app, ["--help"])
+    result = runner.invoke(app, ["--help"], env=HELP_ENV)
 
     assert result.exit_code == 0
     assert "inspect" in result.output
@@ -42,14 +43,14 @@ def test_root_help_exits_successfully() -> None:
 
 
 def test_inspect_help_exits_successfully() -> None:
-    result = runner.invoke(app, ["inspect", "--help"])
+    result = runner.invoke(app, ["inspect", "--help"], env=HELP_ENV)
 
     assert result.exit_code == 0
     assert "Claude Code project directory to inspect" in result.output
 
 
 def test_convert_help_exits_successfully() -> None:
-    result = runner.invoke(app, ["convert", "--help"])
+    result = runner.invoke(app, ["convert", "--help"], env=HELP_ENV)
 
     assert result.exit_code == 0
     assert "--dry-run" in result.output
@@ -165,4 +166,3 @@ def test_agent_invalid_yaml_is_reported(tmp_path: Path) -> None:
 
     assert result.exit_code == 0
     assert "invalid YAML frontmatter" in result.output
-
