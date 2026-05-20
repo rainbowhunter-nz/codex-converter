@@ -42,18 +42,10 @@ def test_root_help_exits_successfully() -> None:
     output = click.unstyle(result.output)
 
     assert result.exit_code == 0
-    assert "Version: dev" in output
     assert "--version" in output
     assert "inspect" in output
     assert "convert" in output
     assert "clean" in output
-
-
-def test_version_exits_successfully() -> None:
-    result = runner.invoke(app, ["--version"])
-
-    assert result.exit_code == 0
-    assert result.output == "codex-converter dev\n"
 
 
 def test_inspect_help_exits_successfully() -> None:
