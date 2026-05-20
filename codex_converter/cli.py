@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -12,8 +13,12 @@ from .converter import convert as run_convert
 from .discovery import discover
 from .models import ReportEntry
 from .safety import reject_user_claude_path
+from ._version import __version__
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(
+    no_args_is_help=True,
+    help=f"Project-local Claude Code to Codex CLI converter.\n\nVersion: {__version__}",
+)
 console = Console(width=200, force_terminal=True, color_system="truecolor", no_color=False)
 STATUS_STYLES = {
     "written": "green",
@@ -24,6 +29,27 @@ STATUS_STYLES = {
     "conflict": "red",
     "error": "bold red",
 }
+
+
+def _version_callback(value: bool) -> None:
+    if value:
+        typer.echo(f"codex-converter {__version__}")
+        raise typer.Exit()
+
+
+@app.callback()
+def root(
+    version: Annotated[
+        bool,
+        typer.Option(
+            "--version",
+            callback=_version_callback,
+            help="Show the version and exit.",
+            is_eager=True,
+        ),
+    ] = False,
+) -> None:
+    pass
 
 
 @app.command()
