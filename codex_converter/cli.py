@@ -106,12 +106,17 @@ def _print_report(entries: list[ReportEntry], root: Path) -> None:
 
 
 def _build_report_table(entries: list[ReportEntry], root: Path) -> Table:
-    table = Table(title="Conversion Report")
+    table = Table(
+        title="Conversion Report",
+        title_style="bold white",
+        header_style="bold",
+        border_style="dim",
+    )
     table.add_column("Status")
-    table.add_column("Kind")
-    table.add_column("Source", no_wrap=True)
-    table.add_column("Target", no_wrap=True)
-    table.add_column("Detail", no_wrap=True)
+    table.add_column("Kind", style="cyan")
+    table.add_column("Source", style="bright_cyan", no_wrap=True)
+    table.add_column("Target", style="green", no_wrap=True)
+    table.add_column("Detail", style="dim white", no_wrap=True)
     for entry in sorted(entries, key=lambda item: (str(item.source), item.kind, item.status.value)):
         table.add_row(
             Text(entry.status.value, style=STATUS_STYLES.get(entry.status.value, "")),

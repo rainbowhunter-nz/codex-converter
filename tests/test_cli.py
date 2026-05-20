@@ -217,16 +217,47 @@ def test_generated_config_toml_keeps_lines_under_120_characters(tmp_path: Path) 
     assert max(len(line) for line in content.splitlines()) <= 120
 
 
-def test_report_status_cells_have_rich_styles() -> None:
+@pytest.mark.parametrize(
+    ("status", "style"),
+    [
+        (Status.WRITTEN, "green"),
+        (Status.PLANNED, "cyan"),
+        (Status.CONVERTIBLE, "cyan"),
+        (Status.SKIPPED, "yellow"),
+        (Status.UNSUPPORTED, "magenta"),
+        (Status.CONFLICT, "red"),
+        (Status.ERROR, "bold red"),
+    ],
+)
+def test_report_status_cells_have_rich_styles(status: Status, style: str) -> None:
     table = _build_report_table(
-        [ReportEntry("kind", Path("source"), Status.ERROR, "detail")],
+        [ReportEntry("kind", Path("source"), status, "detail")],
         Path("."),
     )
     status_cell = table.columns[0]._cells[0]
 
     assert isinstance(status_cell, Text)
-    assert str(status_cell) == "error"
-    assert status_cell.style == "bold red"
+    assert str(status_cell) == status.value
+    assert status_cell.style == style
+
+
+def test_report_table_uses_column_styles_without_changing_cell_text() -> None:
+    table = _build_report_table(
+        [ReportEntry("kind", Path("source"), Status.ERROR, "detail", Path("target"))],
+        Path("."),
+    )
+
+    assert table.title_style == "bold white"
+    assert table.header_style == "bold"
+    assert table.border_style == "dim"
+    assert table.columns[1].style == "cyan"
+    assert table.columns[2].style == "bright_cyan"
+    assert table.columns[3].style == "green"
+    assert table.columns[4].style == "dim white"
+    assert table.columns[1]._cells[0] == "kind"
+    assert table.columns[2]._cells[0] == "source"
+    assert table.columns[3]._cells[0] == "target"
+    assert table.columns[4]._cells[0] == "detail"
 
 
 def test_report_output_remains_plain_text_readable(tmp_path: Path) -> None:
