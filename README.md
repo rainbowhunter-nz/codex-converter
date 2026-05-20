@@ -36,6 +36,36 @@ Overwrite existing generated targets:
 uv run codex-converter convert /path/to/project --force
 ```
 
+Include machine-local Claude settings when generating the reviewable Codex config:
+
+```sh
+uv run codex-converter convert /path/to/project --include-local-settings
+```
+
+Add generated Codex outputs to the output project's `.gitignore`:
+
+```sh
+uv run codex-converter convert /path/to/project --gitignore
+```
+
+Preview cleanup of generated converter output:
+
+```sh
+uv run codex-converter clean /path/to/project --dry-run
+```
+
+Remove generated converter output with `codex-converter` markers:
+
+```sh
+uv run codex-converter clean /path/to/project
+```
+
+Remove known generated target paths even when a marker is missing:
+
+```sh
+uv run codex-converter clean /path/to/project --force
+```
+
 ## Converted Files
 
 | Claude Code input | Codex output |
@@ -45,15 +75,20 @@ uv run codex-converter convert /path/to/project --force
 | `.claude/skills/<name>/` | `.agents/skills/<name>/` |
 | `.claude/commands/<name>.md` | `.agents/skills/<name>/SKILL.md` |
 | `.claude/agents/<name>.md` | `.codex/agents/<name>.toml` |
-| `.claude/settings.json` | `.codex/config.toml` default file |
+| `.claude/settings.json` | `.codex/config.toml` reviewable settings-derived file |
+| `.claude/settings.local.json` | merged into `.codex/config.toml` only with `--include-local-settings` |
 
 Existing targets are reported as conflicts and left untouched unless `--force` is used. `--dry-run` reports planned writes without creating files.
+
+`--gitignore` appends generated output paths such as `AGENTS.md`, `.agents/`, `.codex/`, and nested `AGENTS.md` files to the output project's `.gitignore` without duplicating existing entries.
+
+`clean` is conservative by default: it removes only files or directories that contain, or can be verified from, a `codex-converter` generated marker. It also removes generated `.gitignore` entries while preserving unrelated lines. `clean --force` removes known generated target paths inside the target project even when a marker is missing.
 
 ## Unsupported or Skipped
 
 The V1 converter reports but does not convert:
 
-- `.claude/settings.local.json`
+- `.claude/settings.local.json`, unless `--include-local-settings` is used
 - Claude hooks
 - MCP server configuration
 - plugins and marketplace configuration
