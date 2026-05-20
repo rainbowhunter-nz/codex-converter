@@ -3,6 +3,7 @@ from __future__ import annotations
 import tomllib
 from pathlib import Path
 
+import click
 import pytest
 from typer.testing import CliRunner
 
@@ -36,25 +37,28 @@ def make_fixture(root: Path) -> None:
 
 def test_root_help_exits_successfully() -> None:
     result = runner.invoke(app, ["--help"], env=HELP_ENV)
+    output = click.unstyle(result.output)
 
     assert result.exit_code == 0
-    assert "inspect" in result.output
-    assert "convert" in result.output
+    assert "inspect" in output
+    assert "convert" in output
 
 
 def test_inspect_help_exits_successfully() -> None:
     result = runner.invoke(app, ["inspect", "--help"], env=HELP_ENV)
+    output = click.unstyle(result.output)
 
     assert result.exit_code == 0
-    assert "Claude Code project directory to inspect" in result.output
+    assert "Claude Code project directory to inspect" in output
 
 
 def test_convert_help_exits_successfully() -> None:
     result = runner.invoke(app, ["convert", "--help"], env=HELP_ENV)
+    output = click.unstyle(result.output)
 
     assert result.exit_code == 0
-    assert "--dry-run" in result.output
-    assert "--force" in result.output
+    assert "--dry-run" in output
+    assert "--force" in output
 
 
 def test_inspect_default_source_is_current_directory() -> None:
