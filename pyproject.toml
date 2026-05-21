@@ -1,7 +1,7 @@
 [project]
 name = "codex-converter"
 version = "0.0.0"
-description = "Add your description here"
+description = "Convert project-scoped Claude Code workspace files into Codex CLI-compatible project files."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
